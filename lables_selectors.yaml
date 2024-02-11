@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+    env: production
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        env: production
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest

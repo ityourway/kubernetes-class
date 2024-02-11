@@ -1,0 +1,55 @@
+kubectl apply -f httpd.yaml
+# For LoadBalancer type (if applicable)
+kubectl get svc httpd-service -o wide
+
+# For NodePort type
+kubectl get pods -o wide
+kubectl get svc httpd-service -o jsonpath='{.spec.ports[0].nodePort}'
+
+
+# For LoadBalancer type
+curl http://<external-ip>
+
+# For NodePort type
+curl http://<node-ip>:<node-port>
+
+
+
+
+Here are the commands for Pods, Namespaces, ReplicaSets, Deployments, and Services in that order:
+
+**1. Pods:**
+- Create a Pod: `kubectl apply -f pod.yaml`
+- List Pods: `kubectl get pods`
+- Describe Pod: `kubectl describe pod <pod-name>`
+- Delete Pod: `kubectl delete pod <pod-name>`
+
+**2. Namespaces:**
+- List Namespaces: `kubectl get namespaces`
+- Describe Namespace: `kubectl describe namespace <namespace-name>`
+- Create Namespace: `kubectl create namespace <namespace-name>`
+- Delete Namespace: `kubectl delete namespace <namespace-name>`
+
+**3. ReplicaSets:**
+- List ReplicaSets: `kubectl get replicaset`
+- Describe ReplicaSet: `kubectl describe replicaset <replicaset-name>`
+- Scale ReplicaSet: `kubectl scale replicaset <replicaset-name> --replicas=<desired-replicas>`
+- Delete ReplicaSet: `kubectl delete replicaset <replicaset-name>`
+
+**4. Deployments:**
+- List Deployments: `kubectl get deployments`
+- Describe Deployment: `kubectl describe deployment <deployment-name>`
+- Scale Deployment: `kubectl scale deployment <deployment-name> --replicas=<desired-replicas>`
+- Delete Deployment: `kubectl delete deployment <deployment-name>`
+
+**5. Services:**
+- List Services: `kubectl get services`
+- Describe Service: `kubectl describe service <service-name>`
+- Expose Deployment as Service: `kubectl expose deployment <deployment-name> --port=<port> --target-port=<target-port> --type=<type>`
+- Delete Service: `kubectl delete service <service-name>`
+- kubectl expose deployment <deployment-name> --port=<port> --target-port=<target-port> --type=NodePort
+
+
+You can run these commands in your terminal to interact with Kubernetes resources and manage your cluster.
+
+
